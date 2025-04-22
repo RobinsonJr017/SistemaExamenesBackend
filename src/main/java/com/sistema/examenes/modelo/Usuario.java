@@ -2,6 +2,9 @@ package com.sistema.examenes.modelo;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -18,6 +21,7 @@ public class Usuario {
     private String telefono;
     private boolean enabled = true;
     private String perfil;
-    
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "usuario" )
+    private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 }
