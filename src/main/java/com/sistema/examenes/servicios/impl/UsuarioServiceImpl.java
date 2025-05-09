@@ -20,7 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private RolRepository rolRepository;
 
     @Override
-    public Usuario guardarUusario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception {
+    public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception {
         Usuario usuarioLocal = usuarioRepository.findByUsername(usuario.getUsername());
         if (usuarioLocal != null){
             System.out.println("El usuario ya existe");
@@ -34,5 +34,15 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuarioLocal = usuarioRepository.save(usuario);
         }
         return usuarioLocal;
+    }
+
+    @Override
+    public Usuario obtenerUsuario(String username) {
+        return  usuarioRepository.findByUsername(username);
+    }
+
+    @Override
+    public void eliminarUsuario(Long usuarioId) {
+        usuarioRepository.deleteById(usuarioId);
     }
 }

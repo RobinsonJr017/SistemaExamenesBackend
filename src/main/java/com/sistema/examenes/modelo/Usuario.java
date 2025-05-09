@@ -1,5 +1,6 @@
 package com.sistema.examenes.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -23,6 +24,7 @@ public class Usuario {
     private String perfil;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "usuario" )
+    @JsonIgnore
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
     public Long getId() {

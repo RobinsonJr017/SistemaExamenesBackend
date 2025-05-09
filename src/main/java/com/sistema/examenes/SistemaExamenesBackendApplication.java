@@ -24,7 +24,7 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Usuario usuario = new Usuario();
+		/* Usuario usuario = new Usuario();
 
 		usuario.setNombre("Robinson");
 		usuario.setApellido("Lopez");
@@ -47,6 +47,6 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 
 		//Guardamos esta lista conjunto en la base de datos
 		Usuario usuarioGuardado = usuarioService.guardarUusario(usuario, usuarioRoles);
-		System.out.println(usuarioGuardado.getUsername());
+		System.out.println(usuarioGuardado.getUsername());*/
 	}
 }
