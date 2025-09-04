@@ -3,6 +3,7 @@ package com.sistema.examenes.controladores;
 import com.sistema.examenes.configuraciones.JwtUtils;
 import com.sistema.examenes.modelo.JwtRequest;
 import com.sistema.examenes.modelo.JwtResponse;
+import com.sistema.examenes.modelo.Usuario;
 import com.sistema.examenes.servicios.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +12,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
+@CrossOrigin
 public class AuthenticationController {
 
     @Autowired
@@ -48,5 +50,10 @@ public class AuthenticationController {
         } catch (BadCredentialsException badCredentialsException){
             throw new Exception("Credenciales invalidas " + badCredentialsException.getMessage());
         }
+    }
+
+    @GetMapping("/actual-usuario")
+    public Usuario obtenerUsuarioActual(Principal principal){
+        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
 }
