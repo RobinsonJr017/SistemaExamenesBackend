@@ -1,5 +1,6 @@
 package com.sistema.examenes;
 
+import com.sistema.examenes.excepciones.UsuarioFoundException;
 import com.sistema.examenes.modelo.Rol;
 import com.sistema.examenes.modelo.Usuario;
 import com.sistema.examenes.modelo.UsuarioRol;
@@ -28,6 +29,7 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*try {
 
 			Usuario usuario = new Usuario();
 
@@ -53,5 +55,10 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 			//Guardamos esta lista conjunto en la base de datos
 			Usuario usuarioGuardado = usuarioService.guardarUsuario(usuario, usuarioRoles);
 			System.out.println(usuarioGuardado.getUsername());
+
+		}catch (UsuarioFoundException exception){
+			exception.printStackTrace();
+		}*/
+
 	}
 }

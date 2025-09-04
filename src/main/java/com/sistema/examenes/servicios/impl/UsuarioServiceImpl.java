@@ -1,5 +1,6 @@
 package com.sistema.examenes.servicios.impl;
 
+import com.sistema.examenes.excepciones.UsuarioFoundException;
 import com.sistema.examenes.modelo.Usuario;
 import com.sistema.examenes.modelo.UsuarioRol;
 import com.sistema.examenes.repositorio.RolRepository;
@@ -24,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuarioLocal = usuarioRepository.findByUsername(usuario.getUsername());
         if (usuarioLocal != null){
             System.out.println("El usuario ya existe");
-            throw new Exception("El usuario ya esta presente");
+            throw new UsuarioFoundException("El usuario ya esta presente");
         }
         else {
             for (UsuarioRol usuarioRol:usuarioRoles){
