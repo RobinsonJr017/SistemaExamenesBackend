@@ -36,7 +36,7 @@ public class PreguntaServiceImpl implements PreguntaService {
     }
 
     @Override
-    public Set<Pregunta> obtenerPreguntaDelExamen(Examen examen) {
+    public Set<Pregunta> obtenerPreguntasDelExamen(Examen examen) {
         return preguntaRepository.findByExamen(examen);
     }
 

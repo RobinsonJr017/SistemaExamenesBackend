@@ -12,11 +12,15 @@ public class Pregunta {
 
     @Column(length = 5000)
     private String contenido;
+
     private String imagen;
     private String opcion1;
     private String opcion2;
     private String opcion3;
     private String opcion4;
+    @Transient
+    private String respuestaDada;
+
     private String respuesta;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -78,14 +82,6 @@ public class Pregunta {
         this.opcion4 = opcion4;
     }
 
-    public String getRespuesta() {
-        return respuesta;
-    }
-
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
-    }
-
     public Examen getExamen() {
         return examen;
     }
@@ -94,6 +90,23 @@ public class Pregunta {
         this.examen = examen;
     }
 
-    public Pregunta( ) {
+    public String getRespuestaDada() {
+        return respuestaDada;
+    }
+
+    public void setRespuestaDada(String respuestaDada) {
+        this.respuestaDada = respuestaDada;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public Pregunta(){
+
     }
 }
