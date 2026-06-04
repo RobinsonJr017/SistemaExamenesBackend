@@ -1,10 +1,13 @@
 package com.sistema.examenes.controladores;
 
+import com.sistema.examenes.modelo.Categoria;
 import com.sistema.examenes.modelo.Examen;
 import com.sistema.examenes.servicios.ExamenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/examen")
@@ -37,6 +40,13 @@ public class ExamenController {
     @DeleteMapping("/{examenId}")
     public void eliminarExamen(@PathVariable("examenId") Long examenId){
         examenService.eliminarExamen(examenId);
+    }
+
+    @GetMapping("/categoria/{categoriaId}")
+    public List<Examen> listarExamenesDeUnaCategoria(@PathVariable("categoriaId") Long categoriaId){
+        Categoria categoria = new Categoria();
+        categoria.setCategoriaId(categoriaId);
+        return examenService.listarExamenesDeUnaCategoria(categoria);
     }
 }
 
