@@ -48,5 +48,17 @@ public class ExamenController {
         categoria.setCategoriaId(categoriaId);
         return examenService.listarExamenesDeUnaCategoria(categoria);
     }
+
+    @GetMapping("/activo")
+    public List<Examen> listarExamenesActivos(){
+        return examenService.obtenerExamenesActivos();
+    }
+
+    @GetMapping("/categoria/activo/{categoriaId}")
+    public List<Examen> listarExamenesActivosDeUnaCategoria(@PathVariable("categoriaId") Long categoriaId){
+        Categoria categoria = new Categoria();
+        categoria.setCategoriaId(categoriaId);
+        return examenService.obtenerExamenesActivosDeUnaCategoria(categoria);
+    }
 }
 
