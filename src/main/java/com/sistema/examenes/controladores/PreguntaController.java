@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/pregunta")
@@ -64,6 +61,31 @@ public class PreguntaController {
         examen.setExamenId(examenId);
         Set<Pregunta> preguntas = preguntaService.obtenerPreguntasDelExamen(examen);
         return ResponseEntity.ok(preguntas);
+    }
+
+    @PostMapping("/evaluar-examen")
+    public ResponseEntity<?> evaluarPregunta(@RequestBody List<Pregunta> preguntas){
+        double puntosMaximos = 0;
+        Integer respuestasCorrectas = 0;
+        Integer intentos = 0;
+
+        for (Pregunta p : preguntas){
+            Pregunta pregunta = this.preguntaService.listarPregunta(p.getPreguntaId());
+            if (pregunta.getRespuesta().equals(p.getRespuestaDada())){
+                respuestasCorrectas ++;
+                double puntos = Double.parseDouble(preguntas.get(0).getExamen().getPuntosMaximos())/preguntas.size();
+                puntosMaximos += puntos;
+            }
+            if (p.getRespuestaDada() != null){
+                intentos ++;
+            }
+        }
+
+        Map<String, Object> respuestas = new HashMap<>();
+        respuestas.put("puntosMaximos",puntosMaximos);
+        respuestas.put("respuesasCorrectas",respuestasCorrectas);
+        respuestas.put("intentos",intentos);
+        return ResponseEntity.ok(respuestas);
     }
 
 }

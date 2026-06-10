@@ -18,4 +18,6 @@ public interface PreguntaService {
     Set<Pregunta> obtenerPreguntasDelExamen(Examen examen);
 
     void eliminarPregunta(Long preguntaId);
+
+    Pregunta listarPregunta(Long preguntaId);
 }
